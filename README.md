@@ -1,75 +1,89 @@
+# Credit Card Analysis
+
+An exploratory data analysis project investigating which behavioural and account-usage factors are associated with credit card customer churn, testing four hypotheses across three charting libraries.
+
 # ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
-## Template Instructions
+## Dataset Content
 
-Welcome,
+Credit Card Customers from Kaggle — 10,127 credit card customer records, including demographics, account details (credit limit, balance, tenure, relationship count), and behavioural data (transaction activity, inactivity, contact frequency), against attrition status.
 
-This is the Code Institute student template for the three Data Analytics capstone projects. We have preinstalled all of the tools you need to get started. It's perfectly okay to use this template as the basis for your project submissions. Click the `Use this template` button above to get started.
+## Business Requirements
 
-You can safely delete the Template Instructions section of this README.md file and modify the remaining paragraphs for your own project. Please do read the Template Instructions at least once, though! It contains some important information about the IDE and the extensions we use.
+To understand which behavioural and usage patterns are associated with customer churn, in order to identify early warning signs and highlight which factors are, and are not, meaningful predictors.
 
-If you are working on the first capstone project, you can also delete `.python-version`, `.slugignore`, `Procfile` and `setup.sh` as they are only required for later dashboard projects. 
+## Hypothesis and how to validate?
 
-## How to use this repo
+H1: Customers who churn with high utilization and short tenure show a "bust-out" pattern. Validated with a boxplot, scatter plot, and interactive scatter plot of utilization, tenure, and revolving balance by attrition status.
 
-1. Use this template to create your GitHub project repo. Click the **Use this template** button, then click **Create a new repository**.
+H2: A mismatch between transaction amount change and count change is more common among churned accounts. Validated with a histogram, boxplot, and interactive scatter plot of an engineered mismatch ratio.
 
-1. Copy the URL of your repository to your clipboard.
+H3: Churned customers carry higher utilization, especially those with fewer bank products. Validated with a bar chart, grouped boxplot, and interactive heatmap of utilization by relationship count and attrition status.
 
-1. In VS Code, select **File** -> **Open Folder**.
+H4: More frequent bank contact is associated with higher churn. Validated with a bar chart, seaborn bar plot with confidence intervals, and interactive bar chart of churn rate by contact frequency.
 
-1. Select your `vscode-projects` folder, then click the **Select Folder** button on Windows, or the **Open** button on Mac.
+## Project Plan
 
-1. From the top menu in VS Code, select **Terminal** > **New Terminal** to open a new terminal.
+Dataset sourced from Kaggle and saved to the raw data folder.
+Cleaned in ETL.ipynb (duplicates, missing/'Unknown' values, outliers, leakage columns, feature engineering), saved as an intermediate CSV.
 
-1. In the terminal, type `git clone` followed by the URL of your GitHub repository. Then hit **Enter**. This command will download all the files in your GitHub repository into your vscode-projects folder.
+Each hypothesis tested in Data_Visualisation.ipynb with one Matplotlib, one Seaborn, and one Plotly chart, chosen to suit the variable types and pattern being tested.
 
-1. In VS Code, select **File** > **Open Folder** again.
+A visual, hypothesis-driven EDA approach was used over statistical modelling, since the goal was identifying and communicating patterns rather than prediction.
 
-1. This time, navigate to and select the folder for the project you just downloaded. Then, click **Select Folder**.
+## The rationale to map the business requirements to the Data Visualisations
 
-1. A virtual environment is necessary when working with Python projects to ensure each project's dependencies are kept separate. You need to create your virtual environment, also called a venv, and then activate it whenever you return to your workspace.
-Click the gear icon in the lower left-hand corner of the screen to open the Manage menu and select **Command Palette** to open the VS Code command palette.
+Bust-out pattern (H1): boxplot for overall spread, scatter plot to check for the specific short-tenure/high-utilization clustering predicted, interactive version for point-level inspection.
 
-1. In the command palette, type: *create environment* and select **Python: Create Environment…**
+Spend/count mismatch (H2): histogram for the mismatch ratio's shape, boxplot to compare it by attrition status, scatter plot to check whether churned customers sat off the diagonal or simply showed lower overall activity.
 
-1. Choose **Venv** from the dropdown list.
+Utilization by relationship depth (H3): bar chart for the headline comparison, boxplot to break it down by relationship count, heatmap for a clear view of the interaction.
 
-1. Choose the Python version you installed earlier. Currently, we recommend Python 3.12.8
+Contact frequency (H4): all three charts compared churn rate by contact count; Seaborn added confidence intervals to flag where sample size mattered; Plotly's hover data showed exact customer counts per group.
 
-1. **DO NOT** click the box next to `requirements.txt`; you need to complete additional steps before installing your dependencies. Click **OK**.
+## Analysis techniques used
 
-1. You will see a `.venv` folder appear in the file explorer pane, indicating that the virtual environment has been created.
+Boxplots, scatter plots, histograms, bar charts, and an interactive heatmap, matched to each hypothesis's variable types.
 
-1. **Important**: Note that the `.venv` folder is in the `.gitignore` file so that Git won't track it.
+Feature engineering was required for H2 (an amount/count ratio), including an infinite-value check before plotting, since a zero denominator in a few rows made the ratio unplottable.
 
-1. Return to the terminal by clicking on the TERMINAL tab, or click on the **Terminal** menu and choose **New Terminal** if no terminal is currently open.
+H3 was not supported by the data — the opposite pattern was found — and this is reported as-is rather than adjusted to fit the prediction.
 
-1. In the terminal, use the command below to install your dependencies. This may take several minutes.
+GitHub Copilot and Claude (Anthropic) were used to scope hypotheses, structure the notebooks, debug errors, and refine markdown. All results reflect real code run against the real dataset.
 
- ```console
- pip3 install -r requirements.txt
- ```
+## Ethical considerations (optional)
 
-1. Open the `jupyter_notebooks` directory, and click on the notebook you want to open.
+The dataset contains no real, identifiable individuals, so poses no direct privacy risk. It does represent real financial behaviour, so similar analysis applied in a live setting (e.g. flagging customers for review) would need appropriate oversight — not a concern this project itself involves, but worth noting.
 
-1. Click the **Kernel** button, then choose **Python Environments**.
+## Unfixed Bugs
 
-Note that the kernel says `Python 3.12.8` as it inherits from the venv, so it will be Python-3.12.8 if that is what is installed on your PC. To confirm this, you can use the command below in a notebook code cell.
+None remaining. Bugs encountered and resolved during development are documented below.
 
-```console
-! python --version
-```
+Regular calls with a peer helped greatly throughout the assignment.
 
-## Deployment Reminders
+## Development Roadmap
 
-* The `.python-version`, `.slugignore`, `Procfile` and `setup.sh` files are necessary only if you are deploying a Streamlit app to Heroku as part of your submission for units 2 and 3. 
-* Set the `.python-version` Python version to a [Heroku-22](https://devcenter.heroku.com/articles/python-support#supported-runtimes) stack, currently supported version that most closely matches what you used in this project.
-* The project can be deployed to Heroku using the following steps.
+Challenges: working-directory drift from re-running a relative os.chdir() without a kernel restart; a leftover empty try: block causing an IndentationError; a missing nbformat package blocking Plotly rendering; infinite values in an engineered ratio column; one hypothesis contradicting its prediction.
 
-1. Log in to Heroku and create an App
-2. At the **Deploy** tab, select **GitHub** as the deployment method.
-3. Select your repository name and click **Search**. Once it is found, click **Connect**.
-4. Select the branch you want to deploy, then click **Deploy Branch**.
-5. The deployment process should happen smoothly if all deployment files are fully functional. Click the button **Open App** at the top of the page to access your App.
-6. If the slug size is too large, then add large files not required for the app to the `.slugignore` file.
+Strategies: reading full tracebacks rather than the last line only; a consistent Restart Kernel → Run All habit; using AI tools to debug and sanity-check interpretations.
+
+Next steps: statistical significance testing alongside visual findings; a predictive churn model; interactive dashboard tools.
+
+
+## Main Data Analysis Libraries
+
+Pandas — cleaning and grouping, e.g. df_clean.groupby('Attrition_Flag')['Avg_Utilization_Ratio'].mean().
+
+NumPy — identifying/filtering infinite values in the engineered ratio column.
+
+Matplotlib — baseline chart per hypothesis, e.g. df_clean.boxplot(column='Avg_Utilization_Ratio', by='Attrition_Flag').
+
+Seaborn — deeper comparison per hypothesis, e.g. sns.boxplot(data=df_clean, x='Total_Relationship_Count', y='Avg_Utilization_Ratio', hue='Attrition_Flag').
+
+Plotly — interactive chart per hypothesis, e.g. px.imshow() for the utilization/relationship-count heatmap.
+
+## Credits
+
+The dataset used is the Credit Card Customers dataset from Kaggle.
+I used Claude (Anthropic) to debug code, understand errors, and refine markdown commentary throughout this project.
+

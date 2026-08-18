@@ -51,7 +51,7 @@ H3 was not supported by the data — the opposite pattern was found — and this
 
 ## Ethical considerations (optional)
 
-The dataset contains no real, identifiable individuals, so poses no direct privacy risk. It does represent real financial behaviour, so similar analysis applied in a live setting (e.g. flagging customers for review) would need appropriate oversight — not a concern this project itself involves, but worth noting.
+The dataset contains no real, identifiable individuals, so poses no direct privacy risk. It does represent real financial behaviour, so similar analysis applied in a live setting (e.g. flagging customers for review) would need appropriate oversight — not a concern this project itself involves.
 ## Use of AI
 
 I used Claude (Anthropic) to suggest appropriate graphs for visualisations
@@ -66,11 +66,9 @@ Regular calls with a peer helped greatly throughout the assignment.
 
 ## Development Roadmap
 
-Challenges: working-directory drift from re-running a relative os.chdir() without a kernel restart; a leftover empty try: block causing an IndentationError; a missing nbformat package blocking Plotly rendering; infinite values in an engineered ratio column; one hypothesis contradicting its prediction.
+Ensure I use AI more effeftively.
+Become more more confident understanding code errors
 
-Strategies: reading full tracebacks rather than the last line only; a consistent Restart Kernel → Run All habit; using AI tools to debug and sanity-check interpretations.
-
-Next steps: statistical significance testing alongside visual findings; a predictive churn model; interactive dashboard tools.
 
 
 ## Main Data Analysis Libraries

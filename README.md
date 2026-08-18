@@ -6,7 +6,8 @@ An exploratory data analysis project investigating which behavioural and account
 
 ## Dataset Content
 
-Credit Card Customers from Kaggle — 10,127 credit card customer records, including demographics, account details (credit limit, balance, tenure, relationship count), and behavioural data (transaction activity, inactivity, contact frequency), against attrition status.
+The dataset is the BankChurners and it contains 10,127 credit card customer records which include: Account details, Credit limit, Transaction activity, Inactivity, Etc. It is a synthetic dataset from Kaggle. 
+Here is the link for the dataset: https://www.kaggle.com/datasets/sakshigoyal7/credit-card-customers
 
 ## Business Requirements
 
@@ -24,12 +25,9 @@ H4: More frequent bank contact is associated with higher churn. Validated with a
 
 ## Project Plan
 
-Dataset sourced from Kaggle and saved to the raw data folder.
-Cleaned in ETL.ipynb (duplicates, missing/'Unknown' values, outliers, leakage columns, feature engineering), saved as an intermediate CSV.
+Data collection and set up: The dataset was sourced from Kaggle, downloaded and saved to the raw data folder. The dataset was explored by checking the columns, value counts, statistics, missing values and duplicates. Necessary cleaning was then carried out, including handling Unknown values, outliers, data leakage columns and feature engineering. The cleaned data was saved as an intermediate CSV file.
 
-Each hypothesis tested in Data_Visualisation.ipynb with one Matplotlib, one Seaborn, and one Plotly chart, chosen to suit the variable types and pattern being tested.
-
-A visual, hypothesis-driven EDA approach was used over statistical modelling, since the goal was identifying and communicating patterns rather than prediction.
+Data Visualisation: The cleaned dataset was analysed using scatter plots, boxplots, histograms, line graphs and bar charts. Different visualisations were selected based on the variables and hypotheses being investigated. Matplotlib, Seaborn and Plotly were used to identify and communicate relevant patterns in the data.
 
 ## The rationale to map the business requirements to the Data Visualisations
 
@@ -49,11 +47,16 @@ Feature engineering was required for H2 (an amount/count ratio), including an in
 
 H3 was not supported by the data — the opposite pattern was found — and this is reported as-is rather than adjusted to fit the prediction.
 
-GitHub Copilot and Claude (Anthropic) were used to scope hypotheses, structure the notebooks, debug errors, and refine markdown. All results reflect real code run against the real dataset.
+
 
 ## Ethical considerations (optional)
 
 The dataset contains no real, identifiable individuals, so poses no direct privacy risk. It does represent real financial behaviour, so similar analysis applied in a live setting (e.g. flagging customers for review) would need appropriate oversight — not a concern this project itself involves, but worth noting.
+## Use of AI
+
+I used Claude (Anthropic) to suggest appropriate graphs for visualisations
+I used Claude (Anthropic) to help debug code and understand errors
+I used Claude (Anthropic) to help refine the markdown commentary
 
 ## Unfixed Bugs
 
@@ -85,5 +88,6 @@ Plotly — interactive chart per hypothesis, e.g. px.imshow() for the utilizatio
 ## Credits
 
 The dataset used is the Credit Card Customers dataset from Kaggle.
-I used Claude (Anthropic) to debug code, understand errors, and refine markdown commentary throughout this project.
+https://plotly.com/python/ - Plotly documentation
+https://seaborn.pydata.org/ - Seaborn documentation
 
